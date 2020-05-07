@@ -1,23 +1,22 @@
-function formatName(user) {
-    return user.firstName + ' ' + user.lastName;
+function Task(props) {
+return <li>{props.name}, {new Date().toLocaleTimeString()}</li>
 }
 
-const user = {
-    firstName: "Praveen",
-    lastName: "Garimella"
-};
-
-function tick() {
-    const element = (
-        <div>
-            <h1>Hello, {formatName(user)}</h1>
-            <h2>It is {new Date().toLocaleTimeString()}.</h2>
-        </div>
-    );
-    ReactDOM.render(
-        element,
-        document.getElementById('root')
-    );
+class TodoList extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>TODO List</h1>
+                <ol>
+                    <Task name="Welcome Task" />
+                </ol>
+            </div>
+        );
+    }
 }
 
-setInterval(tick, 1000);
+const tasks = [{name: "Welcome Task"}, {name: "first task"}];
+ReactDOM.render(
+    <TodoList list={tasks}/>,
+    document.getElementById('todo')
+);
