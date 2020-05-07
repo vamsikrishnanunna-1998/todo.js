@@ -1,74 +1,23 @@
-let taskList = []
-
-class Task {
-    constructor(name, dueDate, isDone) {
-        this.taskId = Date.now();
-        this.name = name;
-        this.dueDate = dueDate;
-        this.isDone = isDone;
-    }
-
-    toString() {
-        let htmlText = '<li class="task" ><div>'
-        htmlText += this.name
-        htmlText += ", " + this.dueDate.getDate() 
-                 + "/" + this.dueDate.getMonth();
-        htmlText += '<input type="checkbox" name="isDone" id="isDone">'
-        htmlText += '<button onclick="deleteTask(';
-        htmlText += this.taskId;
-        htmlText += ')">Delete</button>';
-        htmlText += '</div></li>';
-        return htmlText;
-    }
+function formatName(user) {
+    return user.firstName + ' ' + user.lastName;
 }
 
-function render() {
-    const listUI = document.getElementById("todolist")
-    listUI.innerHTML = "";
-    if (taskList.length === 0) listUI.innerHTML = "No tasks todo :-)"
-    taskList.forEach((task) => {
-        listUI.innerHTML += task.toString();
-    })
-}
+const user = {
+    firstName: "Praveen",
+    lastName: "Garimella"
+};
 
-function deleteTask(taskId) {
-    taskList = taskList.filter(
-        (t) => {
-            if(t.taskId != taskId) 
-            return t;
-        }
+function tick() {
+    const element = (
+        <div>
+            <h1>Hello, {formatName(user)}</h1>
+            <h2>It is {new Date().toLocaleTimeString()}.</h2>
+        </div>
     );
-    // call a web api to update the database on the server
-    
-    // update the DOM
-    render()
-    console.log(taskList);
+    ReactDOM.render(
+        element,
+        document.getElementById('root')
+    );
 }
 
-function createTask() {
-    const taskName = document.getElementById("taskName").value;
-    addTask(new Task(taskName, new Date(), false));
-}
-
-function addTask(t) {
-    taskList.push(t)
-    // call a web api to update the database on the server
-    render();
-    console.log(taskList)
-}
-
-function init() {
-    console.log("init called");
-
-    // call a web api to retrieve the task list
-    // write a function to send a api request
-    // get the JSON
-    // assign it to taskList
-    // render
-
-    task = new Task("welcome task", new Date("May 30, 2020"), false);
-    addTask(task);
-    console.log(task);
-}
-
-init();
+setInterval(tick, 1000);
