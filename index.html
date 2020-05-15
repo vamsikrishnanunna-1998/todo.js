@@ -2,11 +2,14 @@
 <head>
     <title>TODO App</title>
 </head>
-<body>
+<body> 
     <ol>
         <div id="todolist"></div>
     </ol>
+    <!-- <input type="checkbox"  onclick =if(this.checked){myfunction()} name="isDone" id="isDone">  -->
     <input type="text" name="taskName" id="taskName">
+    <input type="date" name="inputDueDate" id="inputDueDate">
+    <!-- <button id="dueDatebtn" onclick = "dueDatefn(inputDueDate.value)">add due date</button> -->
     <button onclick="createTask()">Add Task</button>
     <script src="todo-app.js"></script>
 </body>
