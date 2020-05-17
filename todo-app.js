@@ -1,5 +1,11 @@
 function Task(props) {
-    return <li>{props.name}, {props.dueDate.toLocaleTimeString()}</li>
+    return <li>{props.name}, {props.dueDate.toLocaleTimeString()}
+            <button onClick= {mytemp()}> delete </button>
+            </li>
+}
+
+function mytemp() {
+    console.log("my temp delted");
 }
 
 class TodoList extends React.Component {
