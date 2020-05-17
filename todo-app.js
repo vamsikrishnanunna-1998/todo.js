@@ -1,8 +1,8 @@
 function Task(props) {
     if (props.isDone === true) {
-        return <li> <strike><u>{props.name} {props.dueDate} {props.mark} {props.delete} </u></strike></li>
+        return <li> <strike><u>{props.name},{props.dueDate} {props.Check} {props.delete} </u></strike></li>
     } else {
-        return <li> {props.name} {props.dueDate} {props.mark} {props.delete} </li>
+        return <li> {props.name},{props.dueDate} {props.Check} {props.delete} </li>
     }
 
 }
@@ -63,10 +63,10 @@ class TodoList extends React.Component {
                 <ol>
                     {
                         this.state.list.map((t) =>
-                            <Task key={t.id} name={t.name} dueDate={t.dueDate} isDone={t.isDone} mark={t.mark} delete={t.delete}/>)
+                            <Task key={t.id} name={t.name} dueDate={t.dueDate} isDone={t.isDone} Check={t.Check} delete={t.delete}/>)
                     }
                 </ol>
-                <TaskNameForm onAddTask={this.handleAddTask} onDelete={this.deleteItem} onMark={this.handlecheck}/>
+                <TaskNameForm onAddTask={this.handleAddTask} onDelete={this.deleteItem} onCheck={this.handlecheck}/>
             </div>
         );
     }
@@ -89,7 +89,7 @@ class TaskNameForm extends React.Component {
         const id = Date.now();
         const task = {id:id, name: this.state.value, 
         dueDate: this.state.dueDate, isDone: false, 
-        mark: <input type = "checkbox" onClick = {() => this.handlecheck(id)}></input>,
+        Check: <input type = "checkbox" onClick = {() => this.handlecheck(id)}></input>,
         delete: <button type = "button" onClick = {() => this.handleDelete(id)}> x </button>
         
         };
@@ -113,7 +113,7 @@ class TaskNameForm extends React.Component {
     }
 
     handlecheck(id) {
-        this.props.onMark(id);
+        this.props.onCheck(id);
     }
     render() {
         return(
