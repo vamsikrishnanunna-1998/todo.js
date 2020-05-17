@@ -43,7 +43,7 @@ class TodoList extends React.Component {
 class TaskNameForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {value: '',dueDate: ''};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -70,7 +70,7 @@ class TaskNameForm extends React.Component {
         // code to set the state of the component
         this.setState({dueDate: event.target.value});
     }
-    
+
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
